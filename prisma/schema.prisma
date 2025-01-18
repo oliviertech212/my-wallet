@@ -12,3 +12,118 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id            Int          @id @default(autoincrement())
+  email         String       @unique
+  name          String
+  password      String       
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  accounts      Account[]
+  budgets       Budget[]
+  categories    Category[]
+  subcategories Subcategory[]
+  transactions  Transaction[]
+}
+
+model Account {
+  id            Int          @id @default(autoincrement())
+  name          String
+  type          AccountType
+  balance       Decimal       @default(0)
+  currency      String        @default("USD")
+  userId        Int
+  user          User          @relation(fields: [userId], references: [id])
+  transactions  Transaction[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@unique([userId, name])
+}
+
+model Category {
+  id            Int          @id @default(autoincrement())
+  name          String
+  description   String?
+  isActive      Boolean       @default(true)
+  userId        Int
+  user          User          @relation(fields: [userId], references: [id])
+  subcategories Subcategory[]
+  transactions  Transaction[]
+  budgets       Budget[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@unique([userId, name])
+  @@index([userId])
+}
+
+model Subcategory {
+  id            Int          @id @default(autoincrement())
+  name          String
+  description   String?
+  isActive      Boolean       @default(true)
+  categoryId    Int
+  category      Category      @relation(fields: [categoryId], references: [id])
+  userId        Int
+  user          User          @relation(fields: [userId], references: [id])
+  transactions  Transaction[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@unique([userId, categoryId, name])
+  @@index([categoryId])
+  @@index([userId])
+}
+
+model Transaction {
+  id            Int          @id @default(autoincrement())
+  amount        Decimal
+  type          TransactionType
+  description   String?
+  date          DateTime      @default(now())
+  accountId     Int
+  account       Account       @relation(fields: [accountId], references: [id])
+  categoryId    Int?
+  category      Category?     @relation(fields: [categoryId], references: [id])
+  subcategoryId Int?
+  subcategory   Subcategory?  @relation(fields: [subcategoryId], references: [id])
+  userId        Int
+  user          User          @relation(fields: [userId], references: [id])
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([categoryId])
+  @@index([subcategoryId])
+  @@index([userId])
+}
+
+model Budget {
+  id            Int          @id @default(autoincrement())
+  amount        Decimal
+  startDate     DateTime
+  endDate       DateTime
+  categoryId    Int
+  category      Category      @relation(fields: [categoryId], references: [id])
+  userId        Int
+  user          User          @relation(fields: [userId], references: [id])
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([categoryId])
+  @@index([userId])
+}
+
+enum AccountType {
+  BANK
+  MOBILE_MONEY
+  CASH
+  CREDIT_CARD
+  OTHER
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
