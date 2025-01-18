@@ -4,6 +4,16 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  /* background-image: url("/stockmngt.jpg"); */
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.landingpage {
+  /* background-image: url("/auth.png"); */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 @layer utilities {
