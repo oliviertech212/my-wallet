@@ -45,7 +45,7 @@ export function middleware(request: NextRequest) {
     console.log("decoded",decoded);
     
 
-    // requestHeaders.set('userId', decoded.userId);
+    // requestHeaders.set('userId', decoded);
 
     return NextResponse.next({
       request: {

@@ -1,16 +1,18 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const handleGetprogile = async (token: String) => {
+  const handleGetProfile = async (token: string) => {
     try {
       const res = await axios.get("http://localhost:3000/api/v1/auth/profile", {
         headers: {
@@ -18,12 +20,8 @@ export default function Home() {
         },
       });
 
-
-      console.log("res",res.data.user);
-      
-
-      if (typeof window !== "undefined" && res.data.user) {
-
+      if (res.data.user) {
+        // Store user data in localStorage
         localStorage.setItem(
           "user",
           JSON.stringify({
@@ -32,23 +30,34 @@ export default function Home() {
             token: token,
           })
         );
-        return redirect("/dashboard");
+
+        console.log("User found", res.data.user);
+
+        // Navigate to dashboard
+        router.push("/dashboard");
       }
-    } catch (err: any) {
-      console.log(err);
+    } catch (err) {
+      console.error("Error fetching profile:", err);
+      // Redirect to signin on error
+      router.push("/signin");
     }
   };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      let user= localStorage.getItem("user")
-      let token = user ? JSON.parse(user).token : null;
+      const user = localStorage.getItem("user");
+      const token = user ? JSON.parse(user).token : null;
+
       if (token) {
-        handleGetprogile(token);
+        handleGetProfile(token);
+      } else {
+        // Redirect to signin if no token is found
+        router.push("/signin");
       }
     }
-  });
+  }, []); // Empty dependency array ensures this runs once on mount
 
   if (!isMounted) return null; // Render nothing on the server
-  return redirect("/signin");
+
+  return null; // Component doesn't render anything
 }
