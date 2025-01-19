@@ -1,14 +1,18 @@
 "use client";
 import { usePathname } from "next/navigation";
+
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-  const pathname = usePathname();
-  const HeaderRoutes = ["/signin", "/signup", "/forgot-password"];
+  
+  
   return (
-    <>
-      <div className="relative flex flex-col landingpage !bg-[red] md:w-1/2 justify-center items-center min-h-screen mr-0 md:ml-[50%] ">
+    <div className="w-full flex flex-col md:flex-row ">
+      <div className="landingpage flex flex-col md:w-1/2 justify-center items-center min-h-screen">
+       
+      </div>
+      <div className="relative landingpage flex flex-col md:w-1/2 justify-center items-center min-h-screen">
         {children}
       </div>
-    </>
+    </div>
   );
 };
 
