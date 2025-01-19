@@ -29,7 +29,7 @@ const BudgetPage = () => {
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.error || "Failed to fetch budgets");
+      toast.error(error?.response?.data?.error || "Failed to fetch budgets");
     }
   };
 
@@ -49,7 +49,7 @@ const BudgetPage = () => {
       setIsAddBudgetOpen(false);
       toast.success("Budget created successfully");
     } catch (error: any) {
-      toast.error(error?.error || "Failed to create budget");
+      toast.error(error?.response?.data?.error || "Failed to create budget");
     }
   };
 
@@ -69,7 +69,7 @@ const BudgetPage = () => {
       setIsAddBudgetOpen(false);
       toast.success("Budget updated successfully");
     } catch (error: any) {
-      toast.error(error?.error || "Failed to update budget");
+      toast.error(error?.response?.data?.error || "Failed to update budget");
     }
   };
 

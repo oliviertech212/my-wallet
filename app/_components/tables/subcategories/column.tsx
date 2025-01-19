@@ -1,8 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { SubcategoryType } from "@/types/types";
+import { Subcategory } from "@/types/type";
 import { format } from "date-fns";
 
-export const SubcategoryColumns: ColumnDef<SubcategoryType>[] = [
+export const SubcategoryColumns: ColumnDef<Subcategory>[] = [
   {
     accessorKey: "id",
     header: "ID",

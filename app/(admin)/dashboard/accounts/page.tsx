@@ -34,7 +34,7 @@ const AccountPage = () => {
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.error || "Failed to fetch accounts");
+      toast.error(error?.response?.data?.error || "Failed to fetch accounts");
     }
   };
 
@@ -58,7 +58,7 @@ const AccountPage = () => {
       setSelectedAccount(null);
       toast.success("Account created successfully");
     } catch (error: any) {
-      toast.error(error?.error || "Failed to create account");
+      toast.error(error?.response?.data?.error || "Failed to create account");
     }
   };
 
@@ -81,7 +81,7 @@ const AccountPage = () => {
       setSelectedAccount(null);
       toast.success("Account updated successfully");
     } catch (error: any) {
-      toast.error(error?.error || "Failed to update account");
+      toast.error(error?.response?.data?.error || "Failed to update account");
     }
   };
 

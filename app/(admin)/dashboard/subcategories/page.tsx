@@ -33,7 +33,7 @@ const SubcategoryPage = () => {
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.error || "Failed to fetch subcategories");
+      toast.error(error?.response?.data?.error || "Failed to fetch subcategories");
     }
   };
 
@@ -53,7 +53,7 @@ const SubcategoryPage = () => {
       setIsAddSubcategoryOpen(false);
       toast.success("Subcategory created successfully");
     } catch (error: any) {
-      toast.error(error?.error || "Failed to create subcategory");
+      toast.error(error?.response?.data?.error || "Failed to create subcategory");
     }
   };
 
@@ -73,7 +73,7 @@ const SubcategoryPage = () => {
       setUpdateOpen(false);
       toast.success("Subcategory updated successfully");
     } catch (error: any) {
-      toast.error(error?.error || "Failed to update subcategory");
+      toast.error(error?.response?.data?.error || "Failed to update subcategory");
     }
   };
 

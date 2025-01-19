@@ -113,7 +113,7 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>
-            <span className="text-lg font-bold">{user?.name}'s</span>
+            <span className="text-lg font-bold">{user?.name} &lsquo;</span>
             <span className="text-sm ml-2">Wallet</span>
           </SidebarGroupLabel>
           <SidebarGroupContent>

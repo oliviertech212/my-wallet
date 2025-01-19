@@ -53,7 +53,7 @@ const BudgetForm = ({ onSubmit, onUpdate, initialValues, isUpdate = false }: Bud
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.error || "Failed to fetch categories");
+      toast.error(error?.response?.data?.error || "Failed to fetch categories");
     }
   };
 

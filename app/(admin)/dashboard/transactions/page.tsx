@@ -29,7 +29,7 @@ const TransactionPage = () => {
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.error || "Failed to fetch transactions");
+      toast.error(error?.response?.data?.error || "Failed to fetch transactions");
     }
   };
 
@@ -49,7 +49,9 @@ const TransactionPage = () => {
       setIsAddTransactionOpen(false);
       toast.success("Transaction created successfully");
     } catch (error: any) {
-      toast.error(error?.error || "Failed to create transaction");
+      console.log("error", error.response.data.error);
+      
+      toast.error(error?.response?.data?.error || "Failed to create transaction");
     }
   };
 
@@ -69,7 +71,7 @@ const TransactionPage = () => {
       setIsAddTransactionOpen(false);
       toast.success("Transaction updated successfully");
     } catch (error: any) {
-      toast.error(error?.error || "Failed to update transaction");
+      toast.error(error?.response?.data?.error || "Failed to update transaction");
     }
   };
 
@@ -81,7 +83,7 @@ const TransactionPage = () => {
         <TransactionForm
           onSubmit={handleCreateTransaction}
           onUpdate={handleUpdateTransaction}
-          initialValues={selectedTransaction || { amount: 0, description: "", date: "", accountId: 0, categoryId: 0 }}
+          initialValues={selectedTransaction || { amount: 0, description: "", date: "", accountId: 0, categoryId: 0 , subcategoryId: 0, type: "EXPENSE" }}
           isUpdate={!!selectedTransaction}
         />
       )}
