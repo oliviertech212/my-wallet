@@ -30,23 +30,23 @@ const items = [
     icon: FaInbox,
   },
   {
-    title: "Category",
-    url: "/dashboard/category",
+    title: "Categories",
+    url: "/dashboard/categories",
     icon: FaListAlt,
   },
   {
-    title: "Sub Category",
-    url: "/dashboard/subcategory",
+    title: "Sub Categories",
+    url: "/dashboard/subcategories",
     icon: FaListAlt,
   },
   {
-    title: "Budget",
-    url: "/dashboard/budget",
+    title: "Budgets",
+    url: "/dashboard/budgets",
     icon: FaDollarSign,
   },
   {
-    title: "Transaction",
-    url: "/dashboard/transaction",
+    title: "Transactions",
+    url: "/dashboard/transactions",
     icon: FaExchangeAlt,
   },
 ];

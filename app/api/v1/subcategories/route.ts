@@ -6,12 +6,15 @@ import { middleware } from '@/utils/middleware/middleware';
 export async function GET(req: NextRequest) {
   const userId = await middleware(req);
   const { searchParams } = new URL(req.url);
-  const categoryId = parseInt(searchParams.get('categoryId') || '0');
+  // const categoryId = parseInt(searchParams.get('categoryId') || '0');
 
   try {
     const subcategories = await prisma.subcategory.findMany({
-      where: { categoryId, userId },
+      where: {  userId },
     });
+
+  
+    
     return NextResponse.json({subcategories:subcategories}, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: 'Error fetching subcategories' }, { status: 500 });
