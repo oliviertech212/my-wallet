@@ -65,7 +65,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
               </SelectContent>
             </Select>
           </FormControl>
-          <FormMessage>{fieldState.error?.message}</FormMessage>
+          <FormMessage>{fieldState.error?.error}</FormMessage>
         </FormItem>
       )}
     />

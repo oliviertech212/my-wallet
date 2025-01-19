@@ -29,7 +29,7 @@ const TransactionPage = () => {
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.message || "Failed to fetch transactions");
+      toast.error(error?.error || "Failed to fetch transactions");
     }
   };
 
@@ -49,7 +49,7 @@ const TransactionPage = () => {
       setIsAddTransactionOpen(false);
       toast.success("Transaction created successfully");
     } catch (error: any) {
-      toast.error(error?.message || "Failed to create transaction");
+      toast.error(error?.error || "Failed to create transaction");
     }
   };
 
@@ -69,7 +69,7 @@ const TransactionPage = () => {
       setIsAddTransactionOpen(false);
       toast.success("Transaction updated successfully");
     } catch (error: any) {
-      toast.error(error?.message || "Failed to update transaction");
+      toast.error(error?.error || "Failed to update transaction");
     }
   };
 

@@ -57,7 +57,7 @@
 //       setIsLoading(false);
 //     } catch (error: any) {
 //       setIsLoading(false);
-//       toast.error(error?.message || "Failed to fetch accounts");
+//       toast.error(error?.error || "Failed to fetch accounts");
 //     }
 //   };
 
@@ -84,7 +84,7 @@
 //       setIsLoading(false);
 //     } catch (error: any) {
 //       setIsLoading(false);
-//       toast.error(error?.message || "Failed to fetch categories");
+//       toast.error(error?.error || "Failed to fetch categories");
 //     }
 //   };
 
@@ -256,7 +256,7 @@ const TransactionForm = ({ onSubmit, onUpdate, initialValues, isUpdate = false }
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.message || "Failed to fetch accounts");
+      toast.error(error?.error || "Failed to fetch accounts");
     }
   };
 
@@ -273,7 +273,7 @@ const TransactionForm = ({ onSubmit, onUpdate, initialValues, isUpdate = false }
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.message || "Failed to fetch categories");
+      toast.error(error?.error || "Failed to fetch categories");
     }
   };
 

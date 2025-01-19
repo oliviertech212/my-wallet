@@ -30,7 +30,7 @@ const CategoryPage = () => {
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.message || "Failed to fetch categories");
+      toast.error(error?.error || "Failed to fetch categories");
     }
   };
 
@@ -50,7 +50,7 @@ const CategoryPage = () => {
       setIsAddCategoryOpen(false);
       toast.success("Category created successfully");
     } catch (error: any) {
-      toast.error(error?.message || "Failed to create category");
+      toast.error(error?.error || "Failed to create category");
     }
   };
 
@@ -70,7 +70,7 @@ const CategoryPage = () => {
       setUpdateOpen(false);
       toast.success("Category updated successfully");
     } catch (error: any) {
-      toast.error(error?.message || "Failed to update category");
+      toast.error(error?.error || "Failed to update category");
     }
   };
 

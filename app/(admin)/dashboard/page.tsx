@@ -41,7 +41,7 @@ const  [updateOpen , setUpdateOpen] =useState(false);
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.message || " ");
+      toast.error(error?.error || " ");
     }
   };
 

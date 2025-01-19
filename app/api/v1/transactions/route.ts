@@ -73,6 +73,9 @@ export async function POST(req: NextRequest) {
     });
 
     if (account && account.balance < amount && type === 'EXPENSE' && user?.email) {
+
+      console.log('sending email', user?.email, account.balance, amount);
+      
     
      await  sendEmail ({
         to:  user?.email ,

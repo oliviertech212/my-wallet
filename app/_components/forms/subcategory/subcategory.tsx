@@ -76,7 +76,7 @@ const SubcategoryForm = ({
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
-      toast.error(error?.message || "Failed to fetch categories");
+      toast.error(error?.error || "Failed to fetch categories");
     }
   };
 
@@ -182,7 +182,7 @@ export const SelectnumberField: React.FC<SelectFieldProps> = ({
               </SelectContent>
             </Select>
           </FormControl>
-          <FormMessage>{fieldState.error?.message}</FormMessage>
+          <FormMessage>{fieldState.error?.error}</FormMessage>
         </FormItem>
       )}
     />
