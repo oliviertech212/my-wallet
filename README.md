@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+## My Wallet
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This web application helps users manage their finances by tracking accounts, budgets, and transactions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies 
+- Next.js (Full Stack)
+- Prisma ORM
+- PostgreSQL Database
+- Shared UI Components
+- Nodemailer (Email Notifications for Budget Exceeding Transactions)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to Run This Project Locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone the repository:
+   `git clone https://github.com/oliviertech212/my-wallet.git`
 
-## Learn More
+2. Change directory:
+   `cd my-wallet`
 
-To learn more about Next.js, take a look at the following resources:
+3. Install dependencies
+ `npm install`
+4. Create a .env file based on .env.example.
+5. Run database migrations:
+`npm run migration`
+6. Start the development server:
+`npm run dev `
+7. The app will be running on http://localhost:3000/.
+8. Here is the deployed version: `https://my-wallet-chi-sepia.vercel.app/`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Example Scenario
+Create an account.
+Sign in to the dashboard.
 
-## Deploy on Vercel
+User creates accounts:
+Example: Checking Account (Balance: $1,000)
+User creates categories and subcategories:
+Example: "Food" -> "Groceries"
+User creates budgets:
+Example: $500 for "Food"
+User records a transaction:
+Example: Spent $50 on groceries using "Checking Account."
+After recording the transaction:
+Checking Account Balance: $950
+Budget Remaining: $450
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -52,7 +52,7 @@ export default function Login() {
   
   const handleLogin = async (data: LoginFormValues) => {
     setLoading(true);
-    toast.success(" Login successfully");
+   
   
     try {
       const res = await axios.post("http://localhost:3000/api/v1/auth/login", data);
@@ -68,6 +68,7 @@ export default function Login() {
           })
         );
       }
+      toast.success("Login successful");
       router.push("/dashboard");
     } catch (err: any) {
       if (err.status === 401) {
