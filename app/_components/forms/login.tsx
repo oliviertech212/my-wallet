@@ -55,7 +55,7 @@ export default function Login() {
    
   
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/auth/login", data);
+      const res = await axios.post("/api/v1/auth/login", data);
       if (typeof window !== "undefined") {
         localStorage.setItem("usertoken", res.data.token);
         localStorage.setItem(

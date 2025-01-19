@@ -46,3 +46,7 @@ After recording the transaction:
 Checking Account Balance: $950
 Budget Remaining: $450
 
+
+
+![alt text](<Screenshot 2025-01-19 at 17.07.45.png>)
+

@@ -14,7 +14,7 @@ export default function Home() {
 
   const handleGetProfile = async (token: string) => {
     try {
-      const res = await axios.get("http://localhost:3000/api/v1/auth/profile", {
+      const res = await axios.get("/api/v1/auth/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

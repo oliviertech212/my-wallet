@@ -43,7 +43,7 @@ export default function Register() {
   const handleRegister = async (data: RegisterFormValues) => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/auth/register", data);
+      const res = await axios.post("/api/v1/auth/register", data);
       if (typeof window !== "undefined") {
         localStorage.setItem("usertoken", res.data.token);
         localStorage.setItem(
