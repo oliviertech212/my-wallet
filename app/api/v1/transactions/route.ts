@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
 // POST create a new transaction
 export async function POST(req: NextRequest) {
   const userId = await middleware(req);
-  const { amount, type, description, accountId, categoryId, subcategoryId } = await req.json();
+  const { amount, type, description, accountId, categoryId, subcategoryId, } = await req.json();
 
   try {
     // Validate relationships
@@ -64,8 +64,14 @@ export async function POST(req: NextRequest) {
         accountId,
         categoryId: categoryId || null,
         subcategoryId: subcategoryId || null,
+      
         userId,
       },
+    });
+
+    // check account balance and notify user if balance is low
+    const account = await prisma.account.findFirst({
+      where: { id: accountId },
     });
 
     // Update account balance (if transaction type is EXPENSE or INCOME)
@@ -74,7 +80,31 @@ export async function POST(req: NextRequest) {
         where: { id: accountId },
         data: { balance: { decrement: amount } },
       });
+
+      // update budget balance  
+      const budget = await prisma.budget.findFirst({
+        where: { categoryId: categoryId },
+      });
+      
+      if (budget) {
+        await prisma.budget.update({
+          where: { id: budget.id },
+          data: { amount: { decrement: amount } },
+        });
+      }
+
+
+
+
     } else if (type === 'INCOME') {
+
+      // update budget balance
+      const budget = await prisma.budget.findFirst({
+        where: { categoryId: categoryId },
+      });
+
+
+
       await prisma.account.update({
         where: { id: accountId },
         data: { balance: { increment: amount } },
@@ -104,6 +134,7 @@ export async function DELETE(req: NextRequest) {
 
     // Update account balance
     if (transaction.type === 'EXPENSE') {
+
       await prisma.account.update({
         where: { id: transaction.accountId },
         data: { balance: { increment: transaction.amount } },

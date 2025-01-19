@@ -1,8 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { CategoryType } from "@/types/types";
+import { Category } from "@/types/type";
 import { format } from "date-fns";
 
-export const CategoryColumns: ColumnDef<CategoryType>[] = [
+export const CategoryColumns: ColumnDef<Category>[] = [
   {
     accessorKey: "id",
     header: "ID",

@@ -115,7 +115,7 @@ const SubcategoryForm = ({
             placeholder="Enter subcategory description"
             control={form.control}
           />
-          <SelectField
+          <SelectnumberField
             name="categoryId"
             label="Category"
             options={categories.reduce(
@@ -144,7 +144,7 @@ interface SelectFieldProps {
   className?: string;
 }
 
-const SelectField: React.FC<SelectFieldProps> = ({
+export const SelectnumberField: React.FC<SelectFieldProps> = ({
   label,
   placeholder,
   options,

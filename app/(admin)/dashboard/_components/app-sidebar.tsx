@@ -25,6 +25,11 @@ const items = [
     icon: FaHome,
   },
   {
+    title: "Transactions",
+    url: "/dashboard/transactions",
+    icon: FaExchangeAlt,
+  },
+  {
     title: "Account",
     url: "/dashboard/accounts",
     icon: FaInbox,
@@ -44,11 +49,7 @@ const items = [
     url: "/dashboard/budgets",
     icon: FaDollarSign,
   },
-  {
-    title: "Transactions",
-    url: "/dashboard/transactions",
-    icon: FaExchangeAlt,
-  },
+  
 ];
 
 export function AppSidebar() {
