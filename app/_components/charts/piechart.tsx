@@ -1,6 +1,7 @@
 import { Transaction } from "@/types/type";
 import React from "react";
-import Chart from "react-apexcharts";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const PieChart = ({ data }: { data: Transaction[] }) => {
   const options = {

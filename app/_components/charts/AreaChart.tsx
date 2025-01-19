@@ -1,7 +1,8 @@
 import React from "react";
-import Chart from "react-apexcharts";
-import { Transaction } from "@/types/type";
 
+import { Transaction } from "@/types/type";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 const AreaChart = ({ data }: { data: Transaction[] }) => {
   const options = {
     chart: {

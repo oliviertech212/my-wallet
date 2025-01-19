@@ -57,8 +57,9 @@ const Overview = () => {
   };
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
     fetchTransactions();
-    fetchAccounts();
+    fetchAccounts();}
   }, []);
 
   const handleFilter = () => {
