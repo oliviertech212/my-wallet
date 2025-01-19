@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
 import { middleware } from '@/utils/middleware/middleware';
+import { sendEmail } from '@/utils/Notification/email';
+import { use } from 'react';
 
 // GET all transactions for the authenticated user
 export async function GET(req: NextRequest) {
@@ -55,6 +57,34 @@ export async function POST(req: NextRequest) {
       }
     }
 
+
+    // check account balance  and notify user if balance is low  compared to the transaction amount
+    const account = await prisma.account.findFirst({
+      where: { id: accountId },
+    });
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
+    });
+
+    if (account && account.balance < amount && type === 'EXPENSE' && user?.email) {
+    
+     await  sendEmail ({
+        to:  user?.email ,
+        subject: 'Low account balance',
+        text: `Your account balance is low. You have made a transaction of ${amount} and your current balance is ${account.balance}`,
+      
+      });
+      return NextResponse.json({ error: 'Account balance is low' }, { status: 400 });
+    }
+
+
+
     // Create the transaction
     const transaction = await prisma.transaction.create({
       data: {
@@ -68,11 +98,9 @@ export async function POST(req: NextRequest) {
         userId,
       },
     });
+    
 
-    // check account balance and notify user if balance is low
-    const account = await prisma.account.findFirst({
-      where: { id: accountId },
-    });
+
 
     // Update account balance (if transaction type is EXPENSE or INCOME)
     if (type === 'EXPENSE') {
