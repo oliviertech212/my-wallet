@@ -81,6 +81,7 @@ const SubcategoryPage = () => {
 
   return (
     <div className="p-10">
+          <h1 className="text-2xl font-bold mb-4"> Subcategories</h1>
       {isAddSubcategoryOpen  && (
         <SubcategoryForm
           onSubmit={handleCreateSubcategory}

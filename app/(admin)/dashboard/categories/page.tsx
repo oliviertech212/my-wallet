@@ -78,6 +78,7 @@ const CategoryPage = () => {
 
   return (
     <div className="p-10">
+          <h1 className="text-2xl font-bold mb-4"> Categories</h1>
       {isAddCategoryOpen  && (
         <CategoryForm
           onSubmit={handleCreateCategory}
